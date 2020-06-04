@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TodoListViewController.swift
 //  Todoey
 //
 //  Created by Philipp Muellauer on 02/12/2019.
@@ -8,13 +8,25 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class TodoListViewController: UITableViewController {
 
+    let itemArray = ["Find Mike", "Buy Eggos", "Destroy Demogorgon"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//        self.tableView.dataSource = self
+//        self.tableView.delegate = self
     }
-
-
+    
+    // MARK - Tableview Datasource Methods
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        cell.textLabel?.text = itemArray[indexPath.row]
+        return cell
+    }
 }
 
